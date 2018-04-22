@@ -1,0 +1,20 @@
+{
+  "name": "nodejs18-hw",
+  "version": "1.0.0",
+  "description": "NodeJS 2018 Homework",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DTarantsei/nodeJS18-hw.git"
+  },
+  "author": "DTarantsei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DTarantsei/nodeJS18-hw/issues"
+  },
+  "homepage": "https://github.com/DTarantsei/nodeJS18-hw#readme"
+}

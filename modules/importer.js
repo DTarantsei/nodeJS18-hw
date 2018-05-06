@@ -8,7 +8,7 @@ const options = { delimiter : ',' };
 
 
 export default class Importer {
-  constructor(watcher, isSync = true) {
+  constructor(watcher, isSync = false) {
     this.watcher = watcher;
     this.watcher.on('changed', (files) => this.onChange(files, isSync));
   }

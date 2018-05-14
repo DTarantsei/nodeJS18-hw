@@ -26,6 +26,6 @@ export default class DirWatcher extends EventEmitter {
 
   isEqual(prevDir, dir) {
     return prevDir.length === dir.length &&
-      prevDir.reduce((prev, file) => dir.includes(file));
+      prevDir.filter((prev, file) => !dir.includes(file)).length > 0;
   }
 }

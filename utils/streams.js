@@ -1,7 +1,6 @@
 const commander = require('commander');
 const fs = require('fs');
 const path = require('path');
-const https = require('https');
 const through2 = require('through2');
 const csvjson = require('csvjson');
 
@@ -37,7 +36,7 @@ function outputFile(path) {
   }
 
   readStream(path)
-    .on('error', e => console.log(e))
+    .on('error', e => console.error(e))
     .pipe(process.stdout);
 }
 
@@ -50,7 +49,7 @@ function convertFromFile(path) {
   const stringify = csvjson.stream.stringify();
 
   readStream(path)
-    .on('error', e => console.log(e))
+    .on('error', e => console.error(e))
     .pipe(toObject)
     .pipe(stringify)
     .pipe(process.stdout);
@@ -63,13 +62,13 @@ function convertToFile(path) {
 
   const toObject = csvjson.stream.toObject();
   const stringify = csvjson.stream.stringify();
-  const write = fs.createWriteStream(path.replace(/\.[^\.]+$/, '.json'));
+  const writeStream = fs.createWriteStream(path.replace(/\.[^\.]+$/, '.json'));
 
   readStream(path)
-    .on('error', e => console.log(e))
+    .on('error', e => console.error(e))
     .pipe(toObject)
     .pipe(stringify)
-    .pipe(write);
+    .pipe(writeStream);
 }
 
 function cssBundler(dirPath) {
@@ -78,17 +77,26 @@ function cssBundler(dirPath) {
   }
 
   const writeStream = fs.createWriteStream(`${dirPath}/bundle.css`);
+  const lastFileName = 'nodejs-homework3.css';
 
   fs.readdir(dirPath, (error, files) => {
     if (error) {
-      return console.log(error);
+      throw error;
     }
 
     files
-      .filter((file) => path.extname(file) === '.css')
-      .forEach((file) => readStream(`${dirPath}/${file}`)
+      .filter(fileName => path.extname(fileName) === '.css' && path.basename(fileName) !== lastFileName)
+      .forEach(file => readStream(`${dirPath}/${file}`)
         .on('data', chunk => writeStream.write(chunk))
-        .on('error', e => console.log(e)));
+        .on('error', e => console.error(e)));
+  });
+
+  fs.readFile(`${dirPath}/${lastFileName}`, (error, data) => {
+    if (error) {
+      throw error;
+    }
+
+    writeStream.write(data);
   });
 };
 
@@ -106,11 +114,11 @@ function helpMessage() {
 }
 
 commander
-  .option('-a, --action', 'action name')
-  .option('-f, --file', 'file path')
-  .option('-h, --help', 'custom helper')
-  .option('--cssBundler')
-  .option('-p, --path', 'directory path')
+  .option('-a, --action [actionName]', 'action name')
+  .option('-f, --file [filePath]', 'file path')
+  .option('-h, --help []', 'custom helper')
+  .option('--cssBundler []')
+  .option('-p, --path [dirPath]', 'directory path')
   .parse(process.argv);
 
 if (commander.rawArgs.length <= 2 ||

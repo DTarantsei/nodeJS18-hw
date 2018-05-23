@@ -106,7 +106,6 @@ function helpMessage() {
   console.log('    $ set action name -a, --action');
   console.log('    $ set file path -f, --file');
   console.log('    $ get help info -h, --help');
-  console.log('    $ --cssBundler');
   console.log('    $ set directory path -f, --file');
   console.log('');
 
@@ -117,7 +116,6 @@ commander
   .option('-a, --action [actionName]', 'action name')
   .option('-f, --file [filePath]', 'file path')
   .option('-h, --help []', 'custom helper')
-  .option('--cssBundler []')
   .option('-p, --path [dirPath]', 'directory path')
   .parse(process.argv);
 

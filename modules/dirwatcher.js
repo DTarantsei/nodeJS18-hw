@@ -6,7 +6,7 @@ export default class DirWatcher extends EventEmitter {
   constructor() {
     super();
     this.timer = null;
-    this.dir = [];
+    this.dirs = [];
   }
 
   watch(path, delay) {
@@ -16,16 +16,16 @@ export default class DirWatcher extends EventEmitter {
           return console.log(error);
         }
 
-        if (!this.dir || !this.isEqual(this.dir, files)) {
-          this.dir = files;
+        if (!this.dirs || !this.isEqual(this.dirs, files)) {
+          this.dirs = files;
           this.emit('changed', files);
         }
       });
     }, delay);
   }
 
-  isEqual(prevDir, dir) {
-    return prevDir.length === dir.length &&
-      prevDir.filter((prev, file) => !dir.includes(file)).length > 0;
+  isEqual(prevDirs, dirs) {
+    return prevDirs.length === dirs.length &&
+      prevDirs.filter(prevDir => !dirs.includes(prevDir)).length > 0;
   }
 }

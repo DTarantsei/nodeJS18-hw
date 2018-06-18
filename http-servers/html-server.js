@@ -1,11 +1,12 @@
 const http = require('http');
 const fs = require('fs');
+const path = require('path');
 
 
 http
   .createServer()
   .on('request', (req, res) => {
-    fs.readFile('index.html', function (error, data) {
+    fs.readFile(path.join(path.dirname(require.main.filename), 'index.html'), function (error, data) {
       if (error) {
         res.writeHead(404, {
           'Content-Type': 'text/plain'

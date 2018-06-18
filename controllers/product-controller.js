@@ -37,7 +37,7 @@ const products = {
 
 const addProduct = (req, res) => {
   let updatedProducts = products;
-  updatedProducts[guid] = req.body;
+  updatedProducts[guid()] = req.body;
 
   writer(req, res, updatedProducts);
 };

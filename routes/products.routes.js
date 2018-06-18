@@ -10,7 +10,7 @@ const router = express.Router();
 
 
 router.route('/products')
-    .get(getProducts);
+    .get(getProducts)
     .post(addProduct);
 router.get('/products/:id', getProductById);
 router.get('/products/:id/reviews', getReviews);

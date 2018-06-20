@@ -1,4 +1,5 @@
 const express = require('express');
+const tokenValidator = require('../middlewares/token-validator');
 const {
   getProducts,
   addProduct,
@@ -8,6 +9,8 @@ const {
 
 const router = express.Router();
 
+
+router.use(tokenValidator);
 
 router.route('/products')
     .get(getProducts)

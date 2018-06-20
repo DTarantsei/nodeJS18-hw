@@ -1,4 +1,5 @@
 import express from 'express';
+import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/users.routes';
 import productsRoutes from './routes/products.routes';
 import cookieParser from './middlewares/cookie-parser';
@@ -12,6 +13,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser);
 app.use(queryParser);
 
+app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api', productsRoutes);
 

@@ -17,6 +17,7 @@ const credentials = [
   },
 ];
 
+
 const auth = (req, res) => {
   const login = req.body.login;
   const password = req.body.password;

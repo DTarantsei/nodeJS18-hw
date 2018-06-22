@@ -24,6 +24,4 @@ app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api', productsRoutes);
 
-
-
 export default app;

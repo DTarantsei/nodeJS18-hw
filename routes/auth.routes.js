@@ -12,14 +12,22 @@ router.post('/auth', auth);
 
 router.post('/localAuth',
   passport.authenticate('local', { failureRedirect: '/error', session: false }),
-  (req, res) => res.redirect('/success?username='+req.body.login),
+  auth,
 );
 
 router.get('/facebookAuth',
   passport.authenticate('facebook'));
 router.get('/facebookAuth/callback',
   passport.authenticate('facebook', { failureRedirect: '/error', session: false  }),
-  (req, res) => res.redirect('/success?username='+req.user.username)
+  (req, res) => {
+    const updatedReq = req;
+    const body = {
+      login: 'Test',
+      password: '54321',
+    }
+    updatedReq.body = body;
+    auth(updatedReq, res);
+  },
 );
 
 router.get('/twitterAuth',

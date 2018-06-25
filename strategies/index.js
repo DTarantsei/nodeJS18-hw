@@ -12,11 +12,11 @@ passport.use(new LocalStrategy({
     let err;
 
     const user = {
-      login: 'test',
-      pass: '123',
+      login: 'Test',
+      password: '54321',
     };
 
-    if (login !== user.login || password !== user.pass) {
+    if (login !== user.login || password !== user.password) {
       err = 'error';
     }
 

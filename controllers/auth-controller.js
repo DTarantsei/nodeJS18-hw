@@ -38,18 +38,8 @@ const auth = (req, res) => {
     .filter(user => user.login === login && user.password === password);
 
   if (filteredUsers.length !== 0) {
-    res.statusCode = 200;
-    res.json({
-      code: 200,
-      message: 'OK',
-      data: {
-        user: {
-          email: filteredUsers[0].email,
-          username: filteredUsers[0].username,
-        },
-      },
-      token: jwt.sign({ login }, 'privateKey', { expiresIn: 3600 }),
-    });
+    req.user = filteredUsers[0];
+    responseWithToken(req, res);
   } else {
     res.statusCode = 404;
     res.json({
@@ -59,6 +49,19 @@ const auth = (req, res) => {
   }
 }
 
+const responseWithToken = (req, res) => {
+  console.log(req);
+  const user = req.user;
+  res.statusCode = 200;
+  res.json({
+    code: 200,
+    message: 'OK',
+    data: { user },
+    token: jwt.sign(user, 'privateKey', { expiresIn: 3600 }),
+  });
+}
+
 module.exports = {
   auth,
+  responseWithToken,
 };

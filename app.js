@@ -17,7 +17,6 @@ app.use(queryParser);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/success', (req, res) => res.send(`Welcome ${req.query.username}!`));
 app.get('/error', (req, res) => res.send('Invalid login or password'));
 
 app.use('/api', authRoutes);

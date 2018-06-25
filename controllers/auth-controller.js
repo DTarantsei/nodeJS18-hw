@@ -50,8 +50,8 @@ const auth = (req, res) => {
 }
 
 const responseWithToken = (req, res) => {
-  console.log(req);
   const user = req.user;
+
   res.statusCode = 200;
   res.json({
     code: 200,

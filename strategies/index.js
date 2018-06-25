@@ -14,6 +14,8 @@ passport.use(new LocalStrategy({
     const user = {
       login: 'Test',
       password: '54321',
+      username: 'Tester',
+      email: 'pip@tut.by',
     };
 
     if (login !== user.login || password !== user.password) {

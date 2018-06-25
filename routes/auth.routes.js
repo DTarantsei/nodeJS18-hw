@@ -12,10 +12,7 @@ router.post('/auth', auth);
 
 router.post('/localAuth',
   passport.authenticate('local', { failureRedirect: '/error', session: false }),
-  (req, res) => {
-    req.user = req.body;
-    responseWithToken(req, res);
-  }
+  (req, res) => responseWithToken(req, res)
 );
 
 router.get('/facebookAuth',

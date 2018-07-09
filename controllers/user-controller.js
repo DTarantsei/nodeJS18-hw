@@ -1,3 +1,5 @@
+import { User } from '../models';
+
 const users = {
   1: {
     id: '1',
@@ -19,11 +21,13 @@ const users = {
   }
 };
 
-const getAll = (req, res) => {
+const getAll = (req, res, next) => {
   res.writeHead(200, {
     'Content-Type': 'application/json'
   });
-  res.end(JSON.stringify(users));
+  User.findAll()
+    .then(data => res.end(JSON.stringify(data)))
+    .catch(next)
 }
 
 module.exports = {

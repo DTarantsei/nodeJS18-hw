@@ -1,3 +1,26 @@
 {
-  "name": "Node.js Homework Application"
+  "development": {
+    "username": "dany",
+    "password": "password",
+    "database": "nodejs18",
+    "host": "localhost",
+    "port": "5434",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "dany",
+    "password": "password",
+    "database": "nodejs18",
+    "host": "localhost",
+    "port": "5434",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "dany",
+    "password": "password",
+    "database": "nodejs18",
+    "host": "localhost",
+    "port": "5434",
+    "dialect": "postgres"
+  }
 }

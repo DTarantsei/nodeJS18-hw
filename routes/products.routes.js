@@ -10,7 +10,7 @@ const {
 const router = express.Router();
 
 
-router.use(tokenValidator);
+// router.use(tokenValidator);
 
 router.route('/products')
     .get(getProducts)

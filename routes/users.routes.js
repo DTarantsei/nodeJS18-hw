@@ -5,7 +5,7 @@ const { getAll } = require('../controllers/user-controller');
 const router = express.Router();
 
 
-router.use(tokenValidator);
+// router.use(tokenValidator);
 
 router.get('/users', getAll);
 

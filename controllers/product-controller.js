@@ -1,3 +1,5 @@
+import { Product } from '../models';
+
 const products = {
   1: {
      id: 1,
@@ -42,8 +44,11 @@ const addProduct = (req, res) => {
   writer(req, res, updatedProducts);
 };
 
-const getProducts = (req, res) => {
-  writer(req, res, products);
+const getProducts = (req, res, next) => {
+  Product.findAll()
+    .then(data => writer(req, res, data))
+    .catch(next);
+  ;
 };
 
 const getProductById = (req, res, next) => {

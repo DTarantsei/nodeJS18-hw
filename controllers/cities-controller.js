@@ -36,10 +36,12 @@ const addOne = (req, res, next) => {
     'Content-Type': 'application/json'
   });
 
-  const city = {
-    ...req.body,
-    lastModifiedDate: Date.now(),
-  };
+  const city = Object.assign(
+    {
+      lastModifiedDate: Date.now()
+    },
+    req.body,
+  );
 
   new City(city).save((err, result) => {
     if (err) next(err);

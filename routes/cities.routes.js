@@ -9,9 +9,10 @@ const {
 const router = express.Router();
 
 
-router.get('/cities', getAll);
-router.get('/random', random);
-router.post('/city', addOne);
-router.delete('/city/:id', deleteOne);
+router.route('/cities')
+    .get(getAll)
+    .post(addOne);
+router.get('/cities/random', random);
+router.delete('/cities/:id', deleteOne);
 
 module.exports = router;

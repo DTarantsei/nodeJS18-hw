@@ -9,7 +9,8 @@ const citySchema = new Schema({
   location: {
     lat: Number,
     long: Number
-  }
+  },
+  lastModifiedDate: Date
 });
 
 module.exports = mongoose.model('City', citySchema);

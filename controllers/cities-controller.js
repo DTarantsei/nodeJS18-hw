@@ -36,7 +36,12 @@ const addOne = (req, res, next) => {
     'Content-Type': 'application/json'
   });
 
-  new City(req.body).save((err, result) => {
+  const city = {
+    ...req.body,
+    lastModifiedDate: Date.now(),
+  };
+
+  new City(city).save((err, result) => {
     if (err) next(err);
 
     res.end(JSON.stringify(result));

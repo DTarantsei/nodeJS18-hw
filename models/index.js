@@ -1,12 +1,14 @@
-import Sequalize from 'sequelize';
+// import Sequalize from 'sequelize';
+// const sqlz = new Sequalize('nodejs18', 'dany', 'password', {
+//   host: 'localhost',
+//   dialect: 'postgres',
+//   port: '5434'
+// });
+// const Product = sqlz.import('./product');
+// const User = sqlz.import('./user');
 
-const sqlz = new Sequalize('nodejs18', 'dany', 'password', {
-  host: 'localhost',
-  dialect: 'postgres',
-  port: '5434'
-});
+const User = require('./User');
+const Product = require('./product');
+const City = require('./City');
 
-const Product = sqlz.import('./product');
-const User = sqlz.import('./user');
-
-export { User, Product };
+export { User, Product, City };

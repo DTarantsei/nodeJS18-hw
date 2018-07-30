@@ -25,10 +25,12 @@ const getAll = (req, res, next) => {
   res.writeHead(200, {
     'Content-Type': 'application/json'
   });
-  User.findAll()
-    .then(data => res.end(JSON.stringify(data)))
-    .catch(next)
-}
+  User.find({}, (error, result) => {
+    if (error) next(error);
+
+    res.end(JSON.stringify(result))
+  });
+};
 
 module.exports = {
   getAll,

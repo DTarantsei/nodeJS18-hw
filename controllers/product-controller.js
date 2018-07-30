@@ -45,10 +45,11 @@ const addProduct = (req, res) => {
 };
 
 const getProducts = (req, res, next) => {
-  Product.findAll()
-    .then(data => writer(req, res, data))
-    .catch(next);
-  ;
+  Product.find({}, (error, result) => {
+    if (error) next(error);
+
+    writer(req, res, result);
+  });
 };
 
 const getProductById = (req, res, next) => {

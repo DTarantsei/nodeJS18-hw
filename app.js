@@ -9,32 +9,41 @@ import citiesRoutes from './routes/cities.routes';
 import cookieParser from './middlewares/cookie-parser';
 import queryParser from './middlewares/query-parser';
 
-import User from './models/user';
-// import Product from './models/product';
-
 const app = express();
 
-mongoose.connect('mongodb://localhost:32770/nodejs18');
-const test = mongoose.Schema;
-mongoose.Schema = (...args) =>
-console.log(test);
-User.create({
-  name:  'Alex',
-  weight: 78,
-  age: 31
-});
-//
-// const product = new Product({
-//   name:  'Supreme T-Shirt',
-//   brand: 'Supreme',
-//   price: 99
-// });
-// product.save((err, product) => {
-//   if (err) {
-//     console.log('err', err);
-//   }
-//   console.log('saved product', product);
-// });
+mongoose.connect('mongodb://localhost:32769/nodejs18');
+
+const User = mongoose.model('User');
+User.insertMany([
+  {
+    name:  'Alex',
+    weight: 78,
+    age: 31
+  },
+  {
+    name: 'Dan',
+    weight: 78,
+    age: 25
+  },
+  {
+    name: 'Mike',
+    weight: 95,
+    age: 31
+  },
+  {
+    name: 'Tony',
+    weight: 87,
+    age: 27
+  }
+]);
+const Product = mongoose.model('Product');
+Product.insertMany([
+  {
+    name:  'Supreme T-Shirt',
+    brand: 'Supreme',
+    price: 99
+  }
+]);
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));

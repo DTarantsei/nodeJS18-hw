@@ -1,6 +1,8 @@
 import express from 'express';
 import passport from 'passport';
 import mongoose from 'mongoose';
+import { serve, setup } from 'swagger-ui-express';
+import SwaggerJSON from './vendors/swagger.json';
 
 import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/users.routes';
@@ -54,6 +56,7 @@ app.use(passport.session());
 
 app.get('/error', (req, res) => res.send('Invalid login or password'));
 
+app.use('/api-swagger', serve, setup(SwaggerJSON));
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api', productsRoutes);
